@@ -13,7 +13,7 @@ module.exports = {
     debug: true,
     pool: {
       min: 2,
-      max: 6,
+      max: 10,
       createTimeoutMillis: 3000,
       acquireTimeoutMillis: 30000,
       idleTimeoutMillis: 30000,
