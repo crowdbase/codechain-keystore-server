@@ -77,12 +77,16 @@ export function createRouter() {
     });
 
     router.post("/keys", async (req, res) => {
+        console.log('secret2');
         const { passphrase } = req.body;
         const keyType: KeyType = req.body.keyType;
 
         while (true) {
+            console.log('secret3');
             const priv = generatePrivateKey();
+            console.log('secret4');
             const pub = getPublicFromPrivate(priv);
+            console.log('secret5');
             const address = getAccountIdFromPublic(pub);
 
             // Check duplication
@@ -101,6 +105,7 @@ export function createRouter() {
                     break;
                 }
             }
+            console.log('secret6');
 
             const secret = await storage.encode(
                 priv,
