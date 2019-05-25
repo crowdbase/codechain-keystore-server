@@ -15,5 +15,10 @@ artifacts:
   files:
     - ./*
     - dist/**/*
+    - bin/**/*
+    - config/**/*
+    - migrations/**/*
+    - seeds/**/*
+    - src/**/*
     - .ebextensions/**/*
   discard-paths: no
