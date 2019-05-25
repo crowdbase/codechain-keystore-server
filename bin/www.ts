@@ -19,6 +19,7 @@ async function main() {
 
         const port = normalizePort(process.env.PORT || "7007");
         app.set("port", port);
+        console.log("Port set to" + port.toString());
 
         /**
          * Create HTTP server.
