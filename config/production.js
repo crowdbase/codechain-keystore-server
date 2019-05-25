@@ -1,5 +1,6 @@
 const path = require("path");
 
+console.log(process.env);
 module.exports = {
   knex: {
     client: "pg",
@@ -10,6 +11,7 @@ module.exports = {
       user: process.env.DB_USER || "codechain",
       user: process.env.DB_PASSWORD,
     },
+    debug: true,
     pool: {
       min: 2,
       max: 6,
