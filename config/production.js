@@ -8,7 +8,7 @@ module.exports = {
       port: process.env.DB_PORT || 5432,
       database: process.env.DB_NAME || "codechain-keystore",
       user: process.env.DB_USER || "codechain",
-      user: process.env.DB_PASSWORD,
+      password: process.env.DB_PASSWORD,
     },
     debug: true,
     pool: {
@@ -19,7 +19,6 @@ module.exports = {
       idleTimeoutMillis: 30000,
       reapIntervalMillis: 1000,
       createRetryIntervalMillis: 100,
-      propagateCreateError: false // <- default is true, set to false
     },
     migrations: {
       directory: path.resolve(__dirname, "..", "migrations"),
