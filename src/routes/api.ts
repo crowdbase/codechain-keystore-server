@@ -77,18 +77,13 @@ export function createRouter() {
     });
 
     router.post("/keys", async (req, res) => {
-        console.log('secret2');
         const { passphrase } = req.body;
         const keyType: KeyType = req.body.keyType;
 
         while (true) {
-            console.log('secret3');
             const priv = generatePrivateKey();
-            console.log('secret4', priv);
             const pub = getPublicFromPrivate(priv);
-            console.log('secret5', pub);
             const address = getAccountIdFromPublic(pub);
-            console.log('secret6', address);
 
             // Check duplication
             if ((await findKey(keyType, address)) != null) {
@@ -106,7 +101,6 @@ export function createRouter() {
                     break;
                 }
             }
-            console.log('secret7');
 
             const secret = await storage.encode(
                 priv,
@@ -114,26 +108,21 @@ export function createRouter() {
                 passphrase,
                 JSON.stringify({})
             );
-            console.log('secret', secret);
-            try {
-                await KeyModel.query().insert({
-                    type: keyType,
-                    address: secret.address,
-                    version: secret.version,
-    
-                    kdf: secret.crypto.kdf,
-                    kdfparams: secret.crypto.kdfparams,
-                    mac: secret.crypto.mac,
-    
-                    cipher: secret.crypto.cipher,
-                    cipherparams: secret.crypto.cipherparams,
-                    ciphertext: secret.crypto.ciphertext,
-    
-                    meta: secret.meta
-                });
-            } catch (error) {
-                console.log('WHAT??', error);
-            }
+            await KeyModel.query().insert({
+                type: keyType,
+                address: secret.address,
+                version: secret.version,
+
+                kdf: secret.crypto.kdf,
+                kdfparams: secret.crypto.kdfparams,
+                mac: secret.crypto.mac,
+
+                cipher: secret.crypto.cipher,
+                cipherparams: secret.crypto.cipherparams,
+                ciphertext: secret.crypto.ciphertext,
+
+                meta: secret.meta
+            });
 
             res.json({
                 success: true,
