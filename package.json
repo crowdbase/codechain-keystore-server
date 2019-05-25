@@ -4,7 +4,9 @@
   "author": "CodeChain Team <hi@codechain.io>",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "ts-node ./bin/www.ts",
+    "start": "node ./dist/bin/www.js",
+    "dev": "ts-node ./bin/www.ts",
+    "build": "./node_modules/.bin/tsc",
     "test": "yarn lint && jest --env node",
     "lint": "tslint -p . && prettier '**/*.ts' -l",
     "fmt": "tslint -p . --fix && prettier '**/*ts' --write",
