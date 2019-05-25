@@ -13,5 +13,7 @@ phases:
 
 artifacts:
   files:
-    - ./**/*
+    - ./*
+    - dist/**/*
+    - .ebextensions/**/*
   discard-paths: no
