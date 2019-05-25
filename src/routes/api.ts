@@ -88,6 +88,7 @@ export function createRouter() {
             const pub = getPublicFromPrivate(priv);
             console.log('secret5');
             const address = getAccountIdFromPublic(pub);
+            console.log('secret6');
 
             // Check duplication
             if ((await findKey(keyType, address)) != null) {
@@ -105,7 +106,7 @@ export function createRouter() {
                     break;
                 }
             }
-            console.log('secret6');
+            console.log('secret7');
 
             const secret = await storage.encode(
                 priv,
