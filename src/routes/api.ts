@@ -108,6 +108,7 @@ export function createRouter() {
                 passphrase,
                 JSON.stringify({})
             );
+            console.log('secret', secret);
             await KeyModel.query().insert({
                 type: keyType,
                 address: secret.address,
@@ -123,6 +124,7 @@ export function createRouter() {
 
                 meta: secret.meta
             });
+            console.log('WHAT??');
 
             res.json({
                 success: true,
