@@ -109,22 +109,25 @@ export function createRouter() {
                 JSON.stringify({})
             );
             console.log('secret', secret);
-            await KeyModel.query().insert({
-                type: keyType,
-                address: secret.address,
-                version: secret.version,
-
-                kdf: secret.crypto.kdf,
-                kdfparams: secret.crypto.kdfparams,
-                mac: secret.crypto.mac,
-
-                cipher: secret.crypto.cipher,
-                cipherparams: secret.crypto.cipherparams,
-                ciphertext: secret.crypto.ciphertext,
-
-                meta: secret.meta
-            });
-            console.log('WHAT??');
+            try {
+                await KeyModel.query().insert({
+                    type: keyType,
+                    address: secret.address,
+                    version: secret.version,
+    
+                    kdf: secret.crypto.kdf,
+                    kdfparams: secret.crypto.kdfparams,
+                    mac: secret.crypto.mac,
+    
+                    cipher: secret.crypto.cipher,
+                    cipherparams: secret.crypto.cipherparams,
+                    ciphertext: secret.crypto.ciphertext,
+    
+                    meta: secret.meta
+                });
+            } catch (error) {
+                console.log('WHAT??', error);
+            }
 
             res.json({
                 success: true,
